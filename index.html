@@ -201,23 +201,33 @@ yesBtn.addEventListener("click", () => {
   submitBtn.style.display = "inline-block"; 
 });
 
-// Submit date to Google Sheet
 submitBtn.addEventListener("click", () => {
   const date = dateInput.value;
   if (!date) return alert("Please select a date!");
 
   selectedDate.textContent = `You selected: ${date}`;
 
-  fetch("https://script.google.com/macros/s/AKfycbxo4couMXiKTtUvaZGTUp-4obWW2yeypRrhkD_ysfmqwLXx0f1AWArpF6W-p42m-n37/exec", {  // <-- Replace this with your Google Apps Script URL
+  // Using URLSearchParams or no-cors is more reliable for Apps Script
+  fetch("https://script.google.com/macros/s/AKfycbxpfCvHzQhHenXr8TgXuh5mrIIje9ftS3g3g4yReZmXtezOJqHGi3oiy--2l55qNZRo/exec", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    mode: "no-cors", // Crucial for Google Apps Script
+    cache: "no-cache",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8",
+    },
     body: JSON.stringify({ name: "Buse", date: date })
   })
-  .then(response => response.json())
-  .then(data => alert("Date submitted! 💌"))
-  .catch(error => alert("Error submitting date!"));
+  .then(() => {
+    alert("Date submitted! 💌");
+  })
+  .catch(error => {
+    console.error(error);
+    alert("Error submitting date!");
+  });
 });
+
 </script>
 
 </body>
 </html>
+
