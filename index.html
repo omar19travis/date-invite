@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -97,17 +97,6 @@ button {
 .v7 { bottom: -70px; left: 50%; transform: translateX(-50%); }
 .v8 { bottom: -70px; right: -150px; }
 
-/* Hover effect - scale on hover 
-.vid:hover {
-  transform: scale(1.1);
-  z-index: 10;
-  transition: transform 0.3s;
-}*/
-
-/*.v1:hover, .v7:hover {
-  transform: translateX(-50%) scale(1.1);
-}*/
-
 /* Celebration video - hidden initially */
 #celebrateVid {
   display: none;
@@ -130,12 +119,56 @@ button {
   font-size: 16px;
   color: #4CAF50;
 }
+
+/* ----- MOBILE RESPONSIVE ----- */
+@media (max-width: 800px) {
+  .wrapper {
+    width: 100%;
+    height: auto;
+  }
+
+  .card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .vid {
+    width: 70%;
+    height: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 10px auto;
+  }
+
+  #yesBtn, #noBtn {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    display: inline-block;
+    margin: 5px;
+  }
+
+  .card h1 {
+    font-size: 18px;
+  }
+
+  #celebrateVid {
+    width: 80%;
+    height: auto;
+  }
+
+  #dateInput, #dateLabel {
+    width: 100%;
+  }
+}
 </style>
 </head>
 
 <body>
-
-
 
 <div class="wrapper">
 
@@ -155,7 +188,6 @@ button {
 
     <button id="yesBtn">Yes 😊</button>
     <button id="noBtn">No 😢</button>
-
 
     <!-- Celebration video -->
     <video id="celebrateVid" width="350" height="200" autoplay muted loop>
@@ -212,15 +244,14 @@ yesBtn.addEventListener("click", () => {
   yesBtn.style.display = "none";
   noBtn.style.display = "none";
 
-   // Hide the question
+  // Hide the question
   const question = document.querySelector(".card h1");
-
   question.style.display = "none";
 
-  yesMessage.style.display = "block";    // New yes message
- /* celebrateVid.style.display = "block";  // Show celebration video*/
-  dateLabel.style.display = "block";     // Show calendar label
-  dateInput.style.display = "inline-block"; // Show calendar input
+  yesMessage.style.display = "block";    
+  /*celebrateVid.style.display = "block";*/  
+  dateLabel.style.display = "block";     
+  dateInput.style.display = "inline-block"; 
 });
 
 // Show selected date
@@ -231,10 +262,3 @@ dateInput.addEventListener("change", () => {
 
 </body>
 </html>
-
-
-
-
-
-
-
